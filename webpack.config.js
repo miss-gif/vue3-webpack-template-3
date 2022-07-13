@@ -7,7 +7,11 @@ const { VueLoaderPlugin } = require('vue-loader');
 // 내보내기 : JS -> export / node.js -> module.exports
 module.exports = {
   resolve: {
-    extensions: ['.js','.vue']
+    extensions: ['.js','.vue'],
+    alias: {
+      '~': path.resolve(__dirname, 'src'),
+      'assets': path.resolve(__dirname, 'src/assets'),
+    }
   },
 
 
@@ -44,6 +48,10 @@ module.exports = {
         test: /\.js$/,
         use: ["babel-loader"],
       },
+      {
+        test: /\.(png|jpe?g|gif|webp)$/,
+        use: 'file-loader',
+      }
     ],
   },
   // 번들링 후 결과물의 처리 방식 등 다양한 플러그인들을 설정
